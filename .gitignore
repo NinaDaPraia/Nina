@@ -57,16 +57,17 @@ docs/_build/
 target/
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
- *.iml
+*.iml
 
 ## Directory-based project format:
- .idea/
- # if you remove the above rule, at least ignore the following:
+.idea
+
+# if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
- .idea/workspace.xml
- .idea/tasks.xml
- .idea/dictionaries
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
@@ -76,28 +77,28 @@ target/
 .idea/uiDesigner.xml
 
 # Gradle:
- .idea/gradle.xml
- .idea/libraries
+.idea/gradle.xml
+.idea/libraries
 
 # Mongo Explorer plugin:
- .idea/mongoSettings.xml
+.idea/mongoSettings.xml
 
 ## File-based project format:
- *.ipr
- *.iws
+*.ipr
+*.iws
 
 ## Plugin-specific files:
 
 # IntelliJ
- /out/
+/out/
 
 # mpeltonen/sbt-idea plugin
- .idea_modules/
+.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
- com_crashlytics_export_strings.xml
- crashlytics.properties
- crashlytics-build.properties
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
