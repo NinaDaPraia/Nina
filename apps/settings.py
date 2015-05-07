@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'nina.urls'
+ROOT_URLCONF = 'apps.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'nina.wsgi.application'
+WSGI_APPLICATION = 'apps.wsgi.application'
 
 
 # Database
