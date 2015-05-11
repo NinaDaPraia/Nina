@@ -1,5 +1,5 @@
-from django.test import TestCase
+from django.test import SimpleTestCase
 
-class InfluentialFigureTest(TestCase):
+class InfluentialFigureTest(SimpleTestCase):
     def test_true_should_be_true(self):
         self.assertTrue(True)

@@ -1,9 +1,6 @@
-from django.test import Client, TestCase
+from django.test import TestCase
 
 class TestApiRoot(TestCase):
-    def setUp(self):
-        self.client = Client()
-
     def test_should_respond_with_status_ok(self):
         response = self.client.get("/")
         self.assertEquals(response.status_code, 200)
