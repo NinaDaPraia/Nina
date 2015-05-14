@@ -11,8 +11,8 @@ describe 'my consumer' do
       :live => true,
       :stub => false
     ) do |pacto_endpoint|
-      Net::HTTP.get(URI('http://nina-staging.herokuapp.com'))
-      expect(Pacto).to have_validated(:get, 'http://nina-staging.herokuapp.com')
+      Net::HTTP.get(URI(API_HOST))
+      expect(Pacto).to have_validated(:get, API_HOST)
     end
   end
 end
