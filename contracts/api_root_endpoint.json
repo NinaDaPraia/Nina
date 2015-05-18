@@ -10,7 +10,7 @@
     "headers": {
       "Vary": "Accept, Cookie",
       "Content-Type": "application/json",
-      "Allow": "OPTIONS, GET"
+      "Allow": "GET, OPTIONS"
     },
     "status": 200,
     "schema": {
@@ -46,7 +46,7 @@
           "Vary": "Accept, Cookie",
           "X-Frame-Options": "SAMEORIGIN",
           "Content-Type": "application/json",
-          "Allow": "OPTIONS, GET"
+          "Allow": "GET, OPTIONS"
         },
         "body": "{\"status\":\"OK\"}"
       }
