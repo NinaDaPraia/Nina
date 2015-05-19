@@ -1,21 +1,15 @@
 {
   "request": {
-    "headers": {
-      "Accept": "*/*"
-    },
     "http_method": "get",
     "path": "/"
   },
   "response": {
     "headers": {
-      "Vary": "Accept, Cookie",
-      "Content-Type": "application/json",
-      "Allow": "GET, OPTIONS"
+      "Content-Type": "application/json"
     },
     "status": 200,
     "schema": {
       "$schema": "http://json-schema.org/draft-03/schema#",
-      "description": "Generated from http://localhost:8000/ with shasum bff63526eb02853c6b414ccfb4d00ac9ca283930",
       "type": "object",
       "required": true,
       "properties": {
@@ -29,25 +23,10 @@
   "examples": {
     "default": {
       "request": {
-        "method": "get",
-        "uri": "http://localhost:8000/",
-        "headers": {
-          "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-          "Accept": "*/*",
-          "User-Agent": "Ruby",
-          "Host": "localhost:8000"
-        }
+        "method": "get"
       },
       "response": {
         "status": 200,
-        "headers": {
-          "Date": "Thu, 14 May 2015 18:26:40 GMT",
-          "Server": "WSGIServer/0.1 Python/2.7.6",
-          "Vary": "Accept, Cookie",
-          "X-Frame-Options": "SAMEORIGIN",
-          "Content-Type": "application/json",
-          "Allow": "GET, OPTIONS"
-        },
         "body": "{\"status\":\"OK\"}"
       }
     }
