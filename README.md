@@ -13,7 +13,7 @@ A project to help you learn more about influential figures around social justice
 
 #### System dependencies
   
-  The application needs some Python packages: Django, Django REST e psycopg2.
+  The application needs some Python packages: Django, Django REST and psycopg2.
   You can install them running the command ```pip install -r requirements.txt```
 
   You'll also need to install PostgreSQL 9.4.
@@ -48,7 +48,7 @@ A project to help you learn more about influential figures around social justice
   You can run the tests using the command:
   ```python manage.py test```
 
-  To run the contract tests, using Pacto, you run the command:
+  To run the contract tests using a local server, you use the command:
   ```bundle exec rake spec```
 
   You can also set the host of the API, setting the environment variable API_HOST with the value you want. For example:
