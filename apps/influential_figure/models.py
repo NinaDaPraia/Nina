@@ -1,4 +1,6 @@
 from django.db import models
 
 class InfluentialFigure(models.Model):
-    pass
+    name = models.TextField()
+    nationality = models.TextField()
+
