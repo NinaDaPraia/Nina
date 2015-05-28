@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from influential_figure import views
+from apps.influential_figure.views import InfluentialFigureView, api_root
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.api_root)
+    url(r'^$', api_root),
+    url(r'^influential_figures/?$', InfluentialFigureView.as_view())
 ]
