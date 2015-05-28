@@ -1,0 +1,52 @@
+{
+  "request": {
+    "http_method": "get",
+    "path": "/influential_figures"
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 200,
+    "schema": {
+      "$schema": "http://json-schema.org/draft-03/schema#",
+      "type": "array",
+      "required": true,
+      "minItems": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "nationality": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    }
+  },
+  "examples": {
+    "default": {
+      "request": {
+        "method": "get"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "[{\"id\":1,\"name\":\"Zumbi\",\"nationality\":\"Brasileiro\"}]"
+      }
+    }
+  },
+  "name": "GET influential figures"
+}
