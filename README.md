@@ -3,18 +3,18 @@ Nina [![Build Status](https://snap-ci.com/NinaDaPraia/Nina/branch/master/build_i
 
 ## Description
 
-A project to help you learn more about influential figures around social justice initiatives.
+A project to help you learn more about influential figures involved with social justice initiatives.
 
 ### Project requirements
 
 #### Python version
   
-  The project was tested on the version 2.7.6
+  The project was tested using version 2.7.6
 
 #### System dependencies
   
   The application needs some Python packages: Django, Django REST and psycopg2.
-  You can install them running the command ```pip install -r requirements.txt```
+  You can install them by running the command ```pip install -r requirements.txt```
 
   You'll also need to install PostgreSQL 9.4.
 
@@ -24,7 +24,7 @@ A project to help you learn more about influential figures around social justice
 
 ##### Database connection settings
     
-  The following variables are available so you can set the database connection settings according to your needs:
+  The following variables are available if you need to adjust the database connection settings according to your needs:
 
     | Variable          | Default value |
     | --------------------------------- |
@@ -39,10 +39,10 @@ A project to help you learn more about influential figures around social justice
 
 #### Database initialization
 
-  Once you created the database and set up the connection setting for your database, you should run the command:
+  Once you created the database and set up the connection settings for your database, you should run the command:
   ```python manage.py migrate```
 
-  You can also run the command ```python manage.py createsuperuser``` to create the an user to access the admin area of the application.
+  You can also run the command ```python manage.py createsuperuser``` to create a user to access the admin area of the application.
 
 #### How to run the test suite
   You can run the tests using the command:
@@ -51,9 +51,9 @@ A project to help you learn more about influential figures around social justice
   To run the contract tests using a local server, you use the command:
   ```bundle exec rake spec```
 
-  You can also set the host of the API, setting the environment variable API_HOST with the value you want. For example:
+  You can also set the host of the API by setting the environment variable API_HOST with the value you want. For example:
   ```API_HOST=http://example.com bundle exec rake spec```
 
 ##### Deployment instructions
-  Once you publish your commits, the deploy will be made by SnapCI once all the tests are green. You can interact with the API on the http://nina.herokuapp.com
+  Once you publish your commits, the deploy will be made by SnapCI once all the tests are green. You can interact with the API at http://nina.herokuapp.com
 
