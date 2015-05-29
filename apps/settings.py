@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,18 +76,9 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASE_NAME', 'nina'),
-        'USER': os.environ.get('DATABASE_USERNAME', 'nina'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'nina'),
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
-        'PORT': '5432',
-    }
-}
-
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(default='postgres://nina:nina@localhost:5432/nina')
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
