@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: Updates apt packages list from repositories 
+      apt: update_cache=yes
+
+    - name: Install python2.7 
+      apt: name=python2.7 state=latest
+
