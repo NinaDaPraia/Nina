@@ -9,7 +9,9 @@ class InfluentialFigureTest(APISimpleTestCase):
         influential_figures = [
             {
                 'name': 'Zumbi',
-                'description': 'Zumbi dos Palmares'
+                'description': 'Zumbi dos Palmares',
+                'image': ''
+                'social_movements': []
             }
         ]
         response = self.client.get("/influential_figures")
