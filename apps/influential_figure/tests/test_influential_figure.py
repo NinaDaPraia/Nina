@@ -10,7 +10,7 @@ class InfluentialFigureTest(APISimpleTestCase):
             {
                 'name': 'Zumbi',
                 'description': 'Zumbi dos Palmares',
-                'image': ''
+                'image': '',
                 'social_movements': []
             }
         ]
