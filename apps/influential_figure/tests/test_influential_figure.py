@@ -4,12 +4,12 @@ from apps.influential_figure.models import InfluentialFigure
 
 class InfluentialFigureTest(APISimpleTestCase):
     def test_get_influential_figure_list(self):
-        influential = InfluentialFigure(name='Zumbi', nationality='Brasileiro')
+        influential = InfluentialFigure(name='Zumbi', description='Zumbi dos Palmares')
         influential.save()
         influential_figures = [
             {
                 'name': 'Zumbi',
-                'nationality': 'Brasileiro'
+                'description': 'Zumbi dos Palmares'
             }
         ]
         response = self.client.get("/influential_figures")
