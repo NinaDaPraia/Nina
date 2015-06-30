@@ -12,4 +12,3 @@ class InfluentialFigureView(ListAPIView):
     serializer_class = InfluentialFigureSerializer
 
     queryset = InfluentialFigure.objects.all()
-        
