@@ -11,6 +11,29 @@ def login_as_admin(liveServer, username, password):
     password_field.send_keys('nina')
     password_field.send_keys(Keys.RETURN)
 
+def create_social_movement(liveServer, socialMovementName):
+    add_sm_button = liveServer.browser.find_element_by_xpath('//*[@id="content-main"]/div[2]/table/tbody/tr/td[1]/a')
+    add_sm_button.click()
+    sm_name_field = liveServer.browser.find_element_by_name('name')
+    sm_name_field.send_keys(socialMovementName)
+    sm_save_button = liveServer.browser.find_element_by_name('_save')
+    sm_save_button.click()
+
+    body = liveServer.browser.find_element_by_tag_name('body')
+    liveServer.assertIn('The social movement "' + socialMovementName + '" was added successfully.', body.text)
+
+def update_social_movement(liveServer, oldSocialMovementName, newSocialMovementName):
+    select_sm = liveServer.browser.find_element_by_link_text(oldSocialMovementName)
+    select_sm.click()
+    sm_name_field = liveServer.browser.find_element_by_name('name')
+    sm_name_field.clear()
+    sm_name_field.send_keys(newSocialMovementName)
+    sm_save_button = liveServer.browser.find_element_by_name('_save')
+    sm_save_button.click()
+
+    body = liveServer.browser.find_element_by_tag_name('body')
+    liveServer.assertIn('The social movement "' + newSocialMovementName + '" was changed successfully.', body.text)
+
 class SocialMovementTest(LiveServerTestCase):
 
     fixtures = ['admin.json']
@@ -25,12 +48,6 @@ class SocialMovementTest(LiveServerTestCase):
         login_as_admin(self, 'nina', 'nina')
         expected_sm_name = 'SocialMovimentNameTest'
 
-        add_sm_button = self.browser.find_element_by_xpath('//*[@id="content-main"]/div[2]/table/tbody/tr/td[1]/a')
-        add_sm_button.click()
-        sm_name_field = self.browser.find_element_by_name('name')
-        sm_name_field.send_keys(expected_sm_name)
-        sm_save_button = self.browser.find_element_by_name('_save')
-        sm_save_button.click()
+        create_social_movement(self, expected_sm_name)
 
-        body = self.browser.find_element_by_tag_name('body')
-        self.assertIn('The social movement "' + expected_sm_name + '" was added successfully.', body.text)
+        update_social_movement(self, expected_sm_name, 'SocialMovimentNameTestChanged')
