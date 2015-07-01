@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'apps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(default='postgres://nina:nina@localhost:5432/nina')
+DATABASES['default'] = dj_database_url.config(default='postgres://@localhost:5432/nina')
+if os.environ.has_key('DATABASE_URL'):
+    DATABASES['default']['USER'] = 'nina'
+    DATABASES['default']['PASSWORD'] = 'nina'
+
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Internationalization
