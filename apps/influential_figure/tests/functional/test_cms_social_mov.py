@@ -34,6 +34,17 @@ def update_social_movement(liveServer, oldSocialMovementName, newSocialMovementN
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn('The social movement "' + newSocialMovementName + '" was changed successfully.', body.text)
 
+def delete_social_movement(liveServer, socialMovement):
+    select_sm = liveServer.browser.find_element_by_link_text(socialMovement)
+    select_sm.click()
+    delete_button = liveServer.browser.find_element_by_link_text('Delete')
+    delete_button.click()
+    confirm_button = liveServer.browser.find_element_by_xpath('//*[@id="content"]/form/div/input[2]')
+    confirm_button.click()
+
+    body = liveServer.browser.find_element_by_tag_name('body')
+    liveServer.assertIn('The social movement "' + socialMovement + '" was deleted successfully.', body.text)
+
 class SocialMovementTest(LiveServerTestCase):
 
     fixtures = ['admin.json']
@@ -46,8 +57,11 @@ class SocialMovementTest(LiveServerTestCase):
 
     def test_create_sm(self):
         login_as_admin(self, 'nina', 'nina')
-        expected_sm_name = 'SocialMovimentNameTest'
+        expected_social_movement = 'SocialMovimentNameTest'
 
-        create_social_movement(self, expected_sm_name)
+        create_social_movement(self, expected_social_movement)
 
-        update_social_movement(self, expected_sm_name, 'SocialMovimentNameTestChanged')
+        expected_social_movement_changed = 'SocialMovimentNameTestChanged'
+        update_social_movement(self, expected_social_movement, expected_social_movement_changed)
+
+        delete_social_movement(self, expected_social_movement_changed)
