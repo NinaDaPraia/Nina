@@ -12,3 +12,6 @@ class InfluentialFigure(models.Model):
     image = models.TextField()
 
     social_movements = models.ManyToManyField("SocialMovement")
+
+    def __unicode__(self):
+        return self.name
