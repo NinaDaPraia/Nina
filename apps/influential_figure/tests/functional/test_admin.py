@@ -3,9 +3,11 @@ from selenium.webdriver.common.keys import Keys
 
 from django.test import LiveServerTestCase
 
+
 def check_content_on_page(liveServer, text):
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn(text, body.text)
+
 
 def login_as_admin(liveServer, username, password):
     username_field = liveServer.browser.find_element_by_name('username')
@@ -14,9 +16,11 @@ def login_as_admin(liveServer, username, password):
     password_field.send_keys(password)
     password_field.send_keys(Keys.RETURN)
 
+
 def logout(liveServer):
     logout_link = liveServer.browser.find_element_by_link_text('Log out')
     logout_link.click()
+
 
 class AdminTest(LiveServerTestCase):
 

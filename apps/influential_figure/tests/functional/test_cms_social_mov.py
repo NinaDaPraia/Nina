@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 
 from django.test import LiveServerTestCase
 
+
 def login_as_admin(liveServer, username, password):
     liveServer.browser.get(liveServer.live_server_url + '/admin/')
     username_field = liveServer.browser.find_element_by_name('username')
@@ -10,6 +11,7 @@ def login_as_admin(liveServer, username, password):
     password_field = liveServer.browser.find_element_by_name('password')
     password_field.send_keys('nina')
     password_field.send_keys(Keys.RETURN)
+
 
 def create_social_movement(liveServer, socialMovementName):
     enter_social_movement_model_button = liveServer.browser.find_element_by_link_text('Social movements')
@@ -25,6 +27,7 @@ def create_social_movement(liveServer, socialMovementName):
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn('The social movement "' + socialMovementName + '" was added successfully.', body.text)
 
+
 def update_social_movement(liveServer, oldSocialMovementName, newSocialMovementName):
     select_social_movement = liveServer.browser.find_element_by_link_text(oldSocialMovementName)
     select_social_movement.click()
@@ -37,6 +40,7 @@ def update_social_movement(liveServer, oldSocialMovementName, newSocialMovementN
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn('The social movement "' + newSocialMovementName + '" was changed successfully.', body.text)
 
+
 def delete_social_movement(liveServer, socialMovement):
     select_social_movement = liveServer.browser.find_element_by_link_text(socialMovement)
     select_social_movement.click()
@@ -47,6 +51,7 @@ def delete_social_movement(liveServer, socialMovement):
 
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn('The social movement "' + socialMovement + '" was deleted successfully.', body.text)
+
 
 class SocialMovementTest(LiveServerTestCase):
 
