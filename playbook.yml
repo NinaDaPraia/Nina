@@ -25,3 +25,5 @@
     - name: Install python package requirements
       pip: requirements=/vagrant/requirements.txt virtualenv=/vagrant/.virtualenvs/nina-venv
 
+    - name: Install postgresql-9.3
+      apt: name=postgresql-9.3 state=latest
