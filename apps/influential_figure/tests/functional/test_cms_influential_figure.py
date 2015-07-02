@@ -60,6 +60,7 @@ def update_influential_figure(live_server, influential_figure):
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The influential figure "' + expected_influential_figure_name_changed + '" was changed successfully.', body.text)
 
+
 class FiTest(LiveServerTestCase):
 
     fixtures = ['admin.json']

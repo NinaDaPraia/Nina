@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class SocialMovement(models.Model):
     name = models.TextField(unique=True)
 
     def __unicode__(self):
         return self.name
+
 
 class InfluentialFigure(models.Model):
     name = models.TextField()

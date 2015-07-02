@@ -48,6 +48,7 @@ def delete_social_movement(liveServer, socialMovement):
     body = liveServer.browser.find_element_by_tag_name('body')
     liveServer.assertIn('The social movement "' + socialMovement + '" was deleted successfully.', body.text)
 
+
 class SocialMovementTest(LiveServerTestCase):
 
     fixtures = ['admin.json']
