@@ -3,50 +3,50 @@ from selenium.webdriver.common.keys import Keys
 
 from django.test import LiveServerTestCase
 
-def login_as_admin(liveServer, username, password):
-    liveServer.browser.get(liveServer.live_server_url + '/admin/')
-    username_field = liveServer.browser.find_element_by_name('username')
+def login_as_admin(live_server, username, password):
+    live_server.browser.get(live_server.live_server_url + '/admin/')
+    username_field = live_server.browser.find_element_by_name('username')
     username_field.send_keys('nina')
-    password_field = liveServer.browser.find_element_by_name('password')
+    password_field = live_server.browser.find_element_by_name('password')
     password_field.send_keys('nina')
     password_field.send_keys(Keys.RETURN)
 
-def create_social_movement(liveServer, socialMovementName):
-    enter_social_movement_model_button = liveServer.browser.find_element_by_link_text('Social movements')
+def create_social_movement(live_server, social_movement_name):
+    enter_social_movement_model_button = live_server.browser.find_element_by_link_text('Social movements')
     enter_social_movement_model_button.click()
-    add_social_movement_link = liveServer.browser.find_element_by_link_text('Add social movement')
+    add_social_movement_link = live_server.browser.find_element_by_link_text('Add social movement')
     add_social_movement_link.click()
 
-    social_movement_name_field = liveServer.browser.find_element_by_name('name')
-    social_movement_name_field.send_keys(socialMovementName)
-    social_movement_save_button = liveServer.browser.find_element_by_name('_save')
+    social_movement_name_field = live_server.browser.find_element_by_name('name')
+    social_movement_name_field.send_keys(social_movement_name)
+    social_movement_save_button = live_server.browser.find_element_by_name('_save')
     social_movement_save_button.click()
 
-    body = liveServer.browser.find_element_by_tag_name('body')
-    liveServer.assertIn('The social movement "' + socialMovementName + '" was added successfully.', body.text)
+    body = live_server.browser.find_element_by_tag_name('body')
+    live_server.assertIn('The social movement "' + social_movement_name + '" was added successfully.', body.text)
 
-def update_social_movement(liveServer, oldSocialMovementName, newSocialMovementName):
-    select_social_movement = liveServer.browser.find_element_by_link_text(oldSocialMovementName)
+def update_social_movement(live_server, old_social_movement_name, new_social_movement_name):
+    select_social_movement = live_server.browser.find_element_by_link_text(old_social_movement_name)
     select_social_movement.click()
-    social_movement_name_field = liveServer.browser.find_element_by_name('name')
+    social_movement_name_field = live_server.browser.find_element_by_name('name')
     social_movement_name_field.clear()
-    social_movement_name_field.send_keys(newSocialMovementName)
-    social_movement_save_button = liveServer.browser.find_element_by_name('_save')
+    social_movement_name_field.send_keys(new_social_movement_name)
+    social_movement_save_button = live_server.browser.find_element_by_name('_save')
     social_movement_save_button.click()
 
-    body = liveServer.browser.find_element_by_tag_name('body')
-    liveServer.assertIn('The social movement "' + newSocialMovementName + '" was changed successfully.', body.text)
+    body = live_server.browser.find_element_by_tag_name('body')
+    live_server.assertIn('The social movement "' + new_social_movement_name + '" was changed successfully.', body.text)
 
-def delete_social_movement(liveServer, socialMovement):
-    select_social_movement = liveServer.browser.find_element_by_link_text(socialMovement)
+def delete_social_movement(live_server, social_movement):
+    select_social_movement = live_server.browser.find_element_by_link_text(social_movement)
     select_social_movement.click()
-    delete_button = liveServer.browser.find_element_by_link_text('Delete')
+    delete_button = live_server.browser.find_element_by_link_text('Delete')
     delete_button.click()
-    confirm_button = liveServer.browser.find_element_by_xpath('//*[@id="content"]/form/div/input[2]')
+    confirm_button = live_server.browser.find_element_by_xpath('//*[@id="content"]/form/div/input[2]')
     confirm_button.click()
 
-    body = liveServer.browser.find_element_by_tag_name('body')
-    liveServer.assertIn('The social movement "' + socialMovement + '" was deleted successfully.', body.text)
+    body = live_server.browser.find_element_by_tag_name('body')
+    live_server.assertIn('The social movement "' + social_movement + '" was deleted successfully.', body.text)
 
 
 class SocialMovementTest(LiveServerTestCase):
