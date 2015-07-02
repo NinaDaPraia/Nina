@@ -1,0 +1,27 @@
+---
+- hosts: all
+  tasks:
+    - name: Updates apt packages list from repositories 
+      apt: update_cache=yes
+
+    - name: Install python2.7 
+      apt: name=python2.7 state=latest
+
+    - name: Install python-dev
+      apt: name=python-dev state=latest
+
+    - name: Install pip
+      apt: name=python-pip state=latest
+
+    - name: Install virtualenv
+      apt: name=python-virtualenv state=latest
+
+    - name: Create a virtualenv
+      command: virtualenv /vagrant/.virtualenvs/nina-venv creates="/vagrant/.virtualenvs/nina-venv"
+
+    - name : Install postgresql-devel
+      apt: name=libpq-dev state=latest
+
+    - name: Install python package requirements
+      pip: requirements=/vagrant/requirements.txt virtualenv=/vagrant/.virtualenvs/nina-venv
+
