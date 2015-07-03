@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from  apps import settings
 from apps.influential_figure.views import InfluentialFigureView, api_root
 
 urlpatterns = [
@@ -22,3 +24,6 @@ urlpatterns = [
     url(r'^$', api_root),
     url(r'^influential_figures/?$', InfluentialFigureView.as_view())
 ]
+
+if not settings.DEBUG:
+   urlpatterns += staticfiles_urlpatterns()
