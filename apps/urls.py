@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
-from  apps import settings
+from apps import settings
 from apps.influential_figure.views import InfluentialFigureView, api_root
 
 urlpatterns = [
@@ -26,4 +26,4 @@ urlpatterns = [
 ]
 
 if not settings.DEBUG:
-   urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += staticfiles_urlpatterns()
