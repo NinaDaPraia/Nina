@@ -25,5 +25,4 @@ urlpatterns = [
     url(r'^influential_figures/?$', InfluentialFigureView.as_view())
 ]
 
-if not settings.DEBUG:
-    urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns()
