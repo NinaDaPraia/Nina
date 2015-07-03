@@ -1,9 +1,9 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from apps.influential_figure.models import SocialMovement, InfluentialFigure
-
 from django.test import LiveServerTestCase
+
+from apps.influential_figure.models import InfluentialFigure
+
 
 def login_as_admin(live_server, username, password):
     live_server.browser.get(live_server.live_server_url + '/admin/')
@@ -13,6 +13,7 @@ def login_as_admin(live_server, username, password):
     password_field.send_keys('nina')
     login_button = live_server.browser.find_element_by_xpath("//input[@value='Log in']")
     login_button.click()
+
 
 def create_social_moviment(live_server, social_movement_name):
     social_movement_model_link = live_server.browser.find_element_by_link_text('Social movements')
@@ -24,6 +25,7 @@ def create_social_moviment(live_server, social_movement_name):
     social_movement_name_field.send_keys(social_movement_name)
     social_movement_save_button = live_server.browser.find_element_by_name('_save')
     social_movement_save_button.click()
+
 
 def create_influencial_figure(live_server, social_movement, influential_figure):
     influential_figure_model_link = live_server.browser.find_element_by_link_text('Influential figures')
@@ -46,6 +48,7 @@ def create_influencial_figure(live_server, social_movement, influential_figure):
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The influential figure "' + influential_figure.name + '" was added successfully.', body.text)
 
+
 def update_influential_figure(live_server, influential_figure):
     influential_figure_link = live_server.browser.find_element_by_link_text(influential_figure.name)
     influential_figure_link.click()
@@ -59,7 +62,9 @@ def update_influential_figure(live_server, influential_figure):
     update_button.click()
 
     body = live_server.browser.find_element_by_tag_name('body')
-    live_server.assertIn('The influential figure "' + influential_figure.name + '" was changed successfully.', body.text)
+    live_server.assertIn('The influential figure "' +
+                         influential_figure.name + '" was changed successfully.', body.text)
+
 
 def delete_influential_figure(live_server, influential_figure):
     select_influential_figure = live_server.browser.find_element_by_link_text(influential_figure.name)
@@ -70,7 +75,8 @@ def delete_influential_figure(live_server, influential_figure):
     confirm_button.click()
 
     body = live_server.browser.find_element_by_tag_name('body')
-    live_server.assertIn('The influential figure "' + influential_figure.name + '" was deleted successfully.', body.text)
+    live_server.assertIn('The influential figure "' +
+                         influential_figure.name + '" was deleted successfully.', body.text)
 
 
 class FiTest(LiveServerTestCase):
