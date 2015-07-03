@@ -1,7 +1,7 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 from django.test import LiveServerTestCase
+
 
 def login_as_admin(live_server, username, password):
     live_server.browser.get(live_server.live_server_url + '/admin/')
@@ -11,6 +11,7 @@ def login_as_admin(live_server, username, password):
     password_field.send_keys('nina')
     login_button = live_server.browser.find_element_by_xpath("//input[@value='Log in']")
     login_button.click()
+
 
 def create_social_movement(live_server, social_movement_name):
     enter_social_movement_model_button = live_server.browser.find_element_by_link_text('Social movements')
@@ -26,6 +27,7 @@ def create_social_movement(live_server, social_movement_name):
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The social movement "' + social_movement_name + '" was added successfully.', body.text)
 
+
 def update_social_movement(live_server, old_social_movement_name, new_social_movement_name):
     select_social_movement = live_server.browser.find_element_by_link_text(old_social_movement_name)
     select_social_movement.click()
@@ -37,6 +39,7 @@ def update_social_movement(live_server, old_social_movement_name, new_social_mov
 
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The social movement "' + new_social_movement_name + '" was changed successfully.', body.text)
+
 
 def delete_social_movement(live_server, social_movement):
     select_social_movement = live_server.browser.find_element_by_link_text(social_movement)
