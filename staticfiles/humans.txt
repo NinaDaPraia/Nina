@@ -1,0 +1,1 @@
+Django won’t automatically create the target directory that collectstatic uses, so we recommend adding a dummy file to your repository
