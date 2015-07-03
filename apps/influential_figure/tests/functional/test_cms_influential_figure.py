@@ -11,7 +11,8 @@ def login_as_admin(live_server, username, password):
     username_field.send_keys('nina')
     password_field = live_server.browser.find_element_by_name('password')
     password_field.send_keys('nina')
-    password_field.send_keys(Keys.RETURN)
+    login_button = live_server.browser.find_element_by_xpath("//input[@value='Log in']")
+    login_button.click()
 
 def create_social_moviment(live_server, social_movement_name):
     social_movement_model_link = live_server.browser.find_element_by_link_text('Social movements')
