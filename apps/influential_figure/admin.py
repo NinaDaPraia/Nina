@@ -5,3 +5,5 @@ from apps.influential_figure.models import SocialMovement, InfluentialFigure
 
 admin.site.register(SocialMovement)
 admin.site.register(InfluentialFigure)
+
+admin.site.site_header = 'Nina administration'
