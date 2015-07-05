@@ -5,6 +5,7 @@ from apps.influential_figure.models import SocialMovement, InfluentialFigure
 
 admin.site.register(SocialMovement)
 
+
 class InfluentialFigureAdmin(admin.ModelAdmin):
     filter_horizontal = ('social_movements',)
 
