@@ -39,8 +39,10 @@ def create_influencial_figure(live_server, social_movement, influential_figure):
     description_field.send_keys(influential_figure.description)
     image_field = live_server.browser.find_element_by_name('image')
     image_field.send_keys(influential_figure.image)
-    select = Select(live_server.browser.find_element_by_name('social_movements'))
+    select = Select(live_server.browser.find_element_by_name('social_movements_old'))
     select.select_by_visible_text(social_movement)
+    choose_social_movement = live_server.browser.find_element_by_link_text('Choose')
+    choose_social_movement.click()
 
     influential_figure_save_button = live_server.browser.find_element_by_name('_save')
     influential_figure_save_button.click()
