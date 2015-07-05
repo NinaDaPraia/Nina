@@ -15,19 +15,21 @@ def login_as_admin(live_server, username, password):
     login_button.click()
 
 
-def create_social_moviment(live_server, social_movement_name):
+def create_social_moviments(live_server, social_movements_group):
     social_movement_model_link = live_server.browser.find_element_by_link_text('Social movements')
     social_movement_model_link.click()
-    add_social_movement_link = live_server.browser.find_element_by_link_text('Add social movement')
-    add_social_movement_link.click()
 
-    social_movement_name_field = live_server.browser.find_element_by_name('name')
-    social_movement_name_field.send_keys(social_movement_name)
-    social_movement_save_button = live_server.browser.find_element_by_name('_save')
-    social_movement_save_button.click()
+    for social_movement in social_movements_group:
+        add_social_movement_link = live_server.browser.find_element_by_link_text('Add social movement')
+        add_social_movement_link.click()
+
+        social_movement_name_field = live_server.browser.find_element_by_name('name')
+        social_movement_name_field.send_keys(social_movement)
+        social_movement_save_button = live_server.browser.find_element_by_name('_save')
+        social_movement_save_button.click()
 
 
-def create_influencial_figure(live_server, social_movement, influential_figure):
+def create_influencial_figure(live_server, social_movement_group, influential_figure):
     influential_figure_model_link = live_server.browser.find_element_by_link_text('Influential figures')
     influential_figure_model_link.click()
     add_influential_figure_link = live_server.browser.find_element_by_link_text('Add influential figure')
@@ -40,9 +42,10 @@ def create_influencial_figure(live_server, social_movement, influential_figure):
     image_field = live_server.browser.find_element_by_name('image')
     image_field.send_keys(influential_figure.image)
     select = Select(live_server.browser.find_element_by_name('social_movements_old'))
-    select.select_by_visible_text(social_movement)
-    choose_social_movement = live_server.browser.find_element_by_link_text('Choose')
-    choose_social_movement.click()
+    for social_movement in social_movement_group:
+        select.select_by_visible_text(social_movement)
+        choose_social_movement = live_server.browser.find_element_by_link_text('Choose')
+        choose_social_movement.click()
 
     influential_figure_save_button = live_server.browser.find_element_by_name('_save')
     influential_figure_save_button.click()
@@ -93,9 +96,9 @@ class FiTest(LiveServerTestCase):
 
     def test_create_influential_figure(self):
         login_as_admin(self, 'nina', 'nina')
-        expected_social_movement = 'SocialMovimentTest'
+        expected_social_movements = ['FirstSocialMovimentTest', 'SecondSocialMovimentTest']
 
-        create_social_moviment(self, expected_social_movement)
+        create_social_moviments(self, expected_social_movements)
 
         influential_figure_app_link = self.browser.find_element_by_link_text('Influential_Figure')
         influential_figure_app_link.click()
@@ -105,7 +108,7 @@ class FiTest(LiveServerTestCase):
         influential_figure.description = 'This is a very important person'
         influential_figure.image = 'image url'
 
-        create_influencial_figure(self, expected_social_movement, influential_figure)
+        create_influencial_figure(self, expected_social_movements, influential_figure)
 
         update_influential_figure(self, influential_figure)
 
