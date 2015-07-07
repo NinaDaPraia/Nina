@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListCreateAPIView
 from apps.influential_figure.serializers import InfluentialFigureSerializer
 from apps.influential_figure.models import InfluentialFigure
 
@@ -10,7 +10,7 @@ def api_root(request, format=None):
     return Response({"status": "OK"})
 
 
-class InfluentialFigureView(ListAPIView):
+class InfluentialFigureView(ListCreateAPIView):
     serializer_class = InfluentialFigureSerializer
 
     queryset = InfluentialFigure.objects.all()

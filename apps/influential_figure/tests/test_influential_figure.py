@@ -1,7 +1,7 @@
 from rest_framework.test import APISimpleTestCase
 from rest_framework import status
 
-from apps.influential_figure.tests.factories import InfluentialFigureFactory
+from apps.influential_figure.tests.factories import InfluentialFigureFactory, InfluentialFigureResource
 
 
 class InfluentialFigureTest(APISimpleTestCase):
@@ -19,3 +19,10 @@ class InfluentialFigureTest(APISimpleTestCase):
         del response.data[0]['id']
         self.assertEquals(status.HTTP_200_OK, response.status_code)
         self.assertEquals(influential_figures, response.data)
+
+    def test_create_influential_figure(self):
+        influential_figure = InfluentialFigureResource()
+        response = self.client.post("/influential_figures", influential_figure)
+        del response.data['id']
+        self.assertEquals(status.HTTP_201_CREATED, response.status_code)
+        self.assertEquals(influential_figure, response.data)
