@@ -6,3 +6,4 @@ django-postgrespool==0.3.0
 dj-database-url==0.3.0
 selenium==2.46.0
 flake8==2.4.1
+factory-boy==2.4.1

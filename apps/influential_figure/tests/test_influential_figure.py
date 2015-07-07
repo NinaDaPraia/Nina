@@ -1,12 +1,12 @@
 from rest_framework.test import APISimpleTestCase
 from rest_framework import status
-from apps.influential_figure.models import InfluentialFigure
+
+from apps.influential_figure.tests.factories import InfluentialFigureFactory
 
 
 class InfluentialFigureTest(APISimpleTestCase):
     def test_get_influential_figure_list(self):
-        influential = InfluentialFigure(name='Zumbi', description='Zumbi dos Palmares')
-        influential.save()
+        InfluentialFigureFactory()
         influential_figures = [
             {
                 'name': 'Zumbi',
