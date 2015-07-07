@@ -1,6 +1,6 @@
 import factory
 
-from Nina.apps.influential_figure.models import InfluentialFigure
+from apps.influential_figure.models import InfluentialFigure
 
 
 class InfluentialFigureFactory(factory.django.DjangoModelFactory):
