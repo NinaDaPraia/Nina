@@ -41,3 +41,13 @@
     - name: Create database for development
       postgresql_db: name=nina-dev owner=vagrant
       sudo_user: postgres
+
+    - name: Enable postgresql external connections
+      lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf line="host all all 0.0.0.0/32 trust"
+      lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="^listen_addresses*" line="listen_addresses '*'"
+      notify:
+        - restart postgresql
+
+  handlers:
+    - name: restart postgresql
+      service: name=postgresql state=restarted
