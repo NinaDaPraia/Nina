@@ -48,6 +48,9 @@
       notify:
         - restart postgresql
 
+    - name: Chdir to project directory
+      lineinfile: dest=/home/vagrant/.bashrc line="cd /vagrant"
+
   handlers:
     - name: restart postgresql
       service: name=postgresql state=restarted
