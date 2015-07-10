@@ -21,7 +21,9 @@ from apps.influential_figure.views import InfluentialFigureView, api_root
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', api_root),
-    url(r'^influential_figures/?$', InfluentialFigureView.as_view())
+    url(r'^influential_figures/?$', InfluentialFigureView.as_view()),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

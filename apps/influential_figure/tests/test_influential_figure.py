@@ -3,6 +3,19 @@ from rest_framework import status
 from apps.influential_figure.tests.factories import InfluentialFigureFactory, InfluentialFigureResource
 
 
+def login_as_user(api_test_case):
+    api_test_case.client.post("/rest-auth/registration/", {
+        'username': 'create_new_influential_figure',
+        'password1': 'ninanina',
+        'password2': 'ninanina',
+        'email': 'create_new_influential_figure@gmail.com'
+    })
+    api_test_case.client.post("/rest-auth/login/", {
+        'username': 'create_new_influential_figure',
+        'password': 'ninanina'
+    })
+
+
 class InfluentialFigureTest(APISimpleTestCase):
     def test_get_influential_figure_list(self):
         InfluentialFigureFactory()
@@ -21,6 +34,8 @@ class InfluentialFigureTest(APISimpleTestCase):
 
     def test_create_influential_figure(self):
         influential_figure = InfluentialFigureResource()
+        login_as_user(self)
+
         response = self.client.post("/influential_figures", influential_figure)
         del response.data['id']
         self.assertEquals(status.HTTP_201_CREATED, response.status_code)
