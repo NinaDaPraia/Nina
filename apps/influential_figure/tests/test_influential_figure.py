@@ -1,24 +1,20 @@
 from rest_framework.test import APISimpleTestCase
 from rest_framework import status
-from apps.influential_figure.tests.factories import InfluentialFigureFactory, InfluentialFigureResource
+from apps.influential_figure.tests import factories
 
 
 def login_as_user(api_test_case):
-    api_test_case.client.post("/rest-auth/registration/", {
-        'username': 'create_new_influential_figure',
-        'password1': 'ninanina',
-        'password2': 'ninanina',
-        'email': 'create_new_influential_figure@gmail.com'
-    })
+    new_user = factories.UserResource()
+    api_test_case.client.post("/rest-auth/registration/", new_user)
     api_test_case.client.post("/rest-auth/login/", {
-        'username': 'create_new_influential_figure',
-        'password': 'ninanina'
+        'username': new_user['username'],
+        'password': new_user['password1']
     })
 
 
 class InfluentialFigureTest(APISimpleTestCase):
     def test_get_influential_figure_list(self):
-        InfluentialFigureFactory()
+        factories.InfluentialFigureFactory()
         influential_figures = [
             {
                 'name': 'Zumbi',
@@ -33,7 +29,7 @@ class InfluentialFigureTest(APISimpleTestCase):
         self.assertDictEqual(influential_figures[0], response.data[0])
 
     def test_create_influential_figure(self):
-        influential_figure = InfluentialFigureResource()
+        influential_figure = factories.InfluentialFigureResource()
         login_as_user(self)
 
         response = self.client.post("/influential_figures", influential_figure)

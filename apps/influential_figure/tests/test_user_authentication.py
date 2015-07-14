@@ -1,4 +1,5 @@
 from rest_framework.test import APISimpleTestCase
+from apps.influential_figure.tests.factories import UserResource
 import json
 
 
@@ -20,12 +21,7 @@ def login_user(api_test_case, user):
 
 
 def update_user(api_test_case, user_created):
-    updated_user = {
-        'username': user_created['username'] + 'updated_name',
-        'first_name': '',
-        'last_name': '',
-        'email': user_created['email']
-    }
+    updated_user = UserResource()
     response = api_test_case.client.put("/rest-auth/user/", updated_user)
     data = json.loads(response.content)
     api_test_case.assertEquals(data['username'], updated_user['username'])
@@ -39,13 +35,7 @@ def logout(api_test_case):
 
 class UserAuthenticationTest(APISimpleTestCase):
     def test_register_new_user(self):
-        new_user = {
-            'username': 'nina',
-            'password1': 'ninanina',
-            'password2': 'ninanina',
-            'email': 'nina@gmail.com'
-        }
-
+        new_user = UserResource()
         create_user(self, new_user)
         login_user(self, new_user)
         update_user(self, new_user)
