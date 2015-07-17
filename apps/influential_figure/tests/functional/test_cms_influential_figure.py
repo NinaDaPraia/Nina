@@ -1,8 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from django.test import LiveServerTestCase
-
-from apps.influential_figure.models import InfluentialFigure
+from apps.influential_figure.tests.factories import InfluentialFigureResource
 
 
 def login_as_admin(live_server, username, password):
@@ -36,11 +35,11 @@ def create_influencial_figure(live_server, social_movement_group, influential_fi
     add_influential_figure_link.click()
 
     name_field = live_server.browser.find_element_by_name('name')
-    name_field.send_keys(influential_figure.name)
+    name_field.send_keys(influential_figure['name'])
     description_field = live_server.browser.find_element_by_name('description')
-    description_field.send_keys(influential_figure.description)
+    description_field.send_keys(influential_figure['description'])
     image_field = live_server.browser.find_element_by_name('image')
-    image_field.send_keys(influential_figure.image)
+    image_field.send_keys(influential_figure['image'])
     select = Select(live_server.browser.find_element_by_name('social_movements_old'))
     for social_movement in social_movement_group:
         select.select_by_visible_text(social_movement)
@@ -51,28 +50,29 @@ def create_influencial_figure(live_server, social_movement_group, influential_fi
     influential_figure_save_button.click()
 
     body = live_server.browser.find_element_by_tag_name('body')
-    live_server.assertIn('The influential figure "' + influential_figure.name + '" was added successfully.', body.text)
+    live_server.assertIn('The influential figure "' +
+                         influential_figure['name'] + '" was added successfully.', body.text)
 
 
 def update_influential_figure(live_server, influential_figure):
-    influential_figure_link = live_server.browser.find_element_by_link_text(influential_figure.name)
+    influential_figure_link = live_server.browser.find_element_by_link_text(influential_figure['name'])
     influential_figure_link.click()
 
-    influential_figure.name = 'New influential figure name'
+    influential_figure['name'] = 'New influential figure name'
     name_field = live_server.browser.find_element_by_name('name')
     name_field.clear()
-    name_field.send_keys(influential_figure.name)
+    name_field.send_keys(influential_figure['name'])
 
     update_button = live_server.browser.find_element_by_name('_save')
     update_button.click()
 
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The influential figure "' +
-                         influential_figure.name + '" was changed successfully.', body.text)
+                         influential_figure['name'] + '" was changed successfully.', body.text)
 
 
 def delete_influential_figure(live_server, influential_figure):
-    select_influential_figure = live_server.browser.find_element_by_link_text(influential_figure.name)
+    select_influential_figure = live_server.browser.find_element_by_link_text(influential_figure['name'])
     select_influential_figure.click()
     delete_button = live_server.browser.find_element_by_link_text('Delete')
     delete_button.click()
@@ -81,7 +81,7 @@ def delete_influential_figure(live_server, influential_figure):
 
     body = live_server.browser.find_element_by_tag_name('body')
     live_server.assertIn('The influential figure "' +
-                         influential_figure.name + '" was deleted successfully.', body.text)
+                         influential_figure['name'] + '" was deleted successfully.', body.text)
 
 
 class FiTest(LiveServerTestCase):
@@ -103,10 +103,7 @@ class FiTest(LiveServerTestCase):
         influential_figure_app_link = self.browser.find_element_by_link_text('Influential_Figure')
         influential_figure_app_link.click()
 
-        influential_figure = InfluentialFigure()
-        influential_figure.name = 'TestFigure'
-        influential_figure.description = 'This is a very important person'
-        influential_figure.image = 'image url'
+        influential_figure = InfluentialFigureResource()
 
         create_influencial_figure(self, expected_social_movements, influential_figure)
 

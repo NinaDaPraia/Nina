@@ -1,5 +1,4 @@
 from selenium import webdriver
-
 from django.test import LiveServerTestCase
 
 
