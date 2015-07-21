@@ -11,5 +11,5 @@ def flake8():
 
 @task
 def test_and_code_style():
-    call_task('unit_test')
     call_task('flake8')
+    call_task('unit_test')
