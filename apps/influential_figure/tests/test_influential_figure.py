@@ -23,8 +23,10 @@ class InfluentialFigureTest(APISimpleTestCase):
                 'social_movements': []
             }
         ]
+
         response = self.client.get("/influential_figures")
         del response.data[0]['id']
+
         self.assertEquals(status.HTTP_200_OK, response.status_code)
         self.assertDictEqual(influential_figures[0], response.data[0])
 
@@ -34,5 +36,6 @@ class InfluentialFigureTest(APISimpleTestCase):
 
         response = self.client.post("/influential_figures", influential_figure)
         del response.data['id']
+
         self.assertEquals(status.HTTP_201_CREATED, response.status_code)
         self.assertEquals(influential_figure, response.data)
