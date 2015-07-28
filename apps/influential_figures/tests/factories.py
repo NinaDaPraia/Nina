@@ -1,5 +1,5 @@
 import factory
-from apps.influential_figure.models import InfluentialFigure, SocialMovement
+from apps.influential_figures.models import InfluentialFigure, SocialMovement
 
 
 class SocialMovement(factory.django.DjangoModelFactory):

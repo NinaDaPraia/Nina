@@ -1,12 +1,11 @@
 from rest_framework.test import APISimpleTestCase
-from apps.influential_figure.tests.factories import UserResource
-import json
+
+from apps.influential_figures.tests.factories import UserResource
 
 
 def create_user(api_test_case, user):
     response = api_test_case.client.post("/rest-auth/registration/", user)
-    data = json.loads(response.content)
-    api_test_case.assertEquals(user['username'], data['username'])
+    api_test_case.assertEquals(user['username'], response.data['username'])
 
 
 def login_user(api_test_case, user):
@@ -14,23 +13,19 @@ def login_user(api_test_case, user):
         'username': user['username'],
         'password': user['password1']
     })
-    data = json.loads(response.content)
-    stored_user = api_test_case.client.get("/rest-auth/user/", {'token': data['key']})
-    stored_user = json.loads(stored_user.content)
-    api_test_case.assertEquals(stored_user['username'], user['username'])
+    stored_user = api_test_case.client.get("/rest-auth/user/", {'token': response.data['key']})
+    api_test_case.assertEquals(stored_user.data['username'], user['username'])
 
 
 def update_user(api_test_case, user_created):
     updated_user = UserResource()
     response = api_test_case.client.put("/rest-auth/user/", updated_user)
-    data = json.loads(response.content)
-    api_test_case.assertEquals(data['username'], updated_user['username'])
+    api_test_case.assertEquals(response.data['username'], updated_user['username'])
 
 
 def logout(api_test_case):
     response = api_test_case.client.post("/rest-auth/logout/")
-    data = json.loads(response.content)
-    api_test_case.assertTrue(data['success'], "Successfully logged out.")
+    api_test_case.assertTrue(response.data['success'], "Successfully logged out.")
 
 
 class UserAuthenticationTest(APISimpleTestCase):

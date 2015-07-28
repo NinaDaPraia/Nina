@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from django.test import LiveServerTestCase
-from apps.influential_figure.tests.factories import InfluentialFigureResource
+from apps.influential_figures.tests.factories import InfluentialFigureResource
 
 
 def login_as_admin(live_server, username, password):
@@ -100,7 +100,7 @@ class FiTest(LiveServerTestCase):
 
         create_social_moviments(self, expected_social_movements)
 
-        influential_figure_app_link = self.browser.find_element_by_link_text('Influential_Figure')
+        influential_figure_app_link = self.browser.find_element_by_link_text('Influential_Figures')
         influential_figure_app_link.click()
 
         influential_figure = InfluentialFigureResource()

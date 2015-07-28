@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
-from apps.influential_figure.views import InfluentialFigureView, api_root, InfluentialListFigureView
+from apps.influential_figures.views import InfluentialFigureView, api_root, InfluentialListFigureView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

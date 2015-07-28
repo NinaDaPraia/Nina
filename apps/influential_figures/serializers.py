@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, StringRelatedField
-from apps.influential_figure.models import InfluentialFigure
+from apps.influential_figures.models import InfluentialFigure
 
 
 class InfluentialFigureSerializer(ModelSerializer):

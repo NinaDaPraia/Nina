@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('influential_figure', '0002_auto_20150528_1251'),
+        ('influential_figures', '0002_auto_20150528_1251'),
     ]
 
     operations = [
@@ -32,6 +32,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='influentialfigure',
             name='social_movements',
-            field=models.ManyToManyField(to='influential_figure.SocialMovement'),
+            field=models.ManyToManyField(to='influential_figures.SocialMovement'),
         ),
     ]

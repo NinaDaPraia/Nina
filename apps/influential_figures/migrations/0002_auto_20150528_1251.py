@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('influential_figure', '0001_initial'),
+        ('influential_figures', '0001_initial'),
     ]
 
     operations = [

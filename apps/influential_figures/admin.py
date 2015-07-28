@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.influential_figure.models import SocialMovement, InfluentialFigure
+from apps.influential_figures.models import SocialMovement, InfluentialFigure
 
 
 class InfluentialFigureAdmin(admin.ModelAdmin):

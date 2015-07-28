@@ -1,9 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
-from apps.influential_figure.serializers import InfluentialFigureSerializer
-from apps.influential_figure.models import InfluentialFigure
-from apps.influential_figure.app_permissions import UserPermission
+from apps.influential_figures.serializers import InfluentialFigureSerializer
+from apps.influential_figures.models import InfluentialFigure
+from apps.influential_figures.app_permissions import UserPermission
 
 
 @api_view(('GET',))

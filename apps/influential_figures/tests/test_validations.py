@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.test import APISimpleTestCase
-from apps.influential_figure.tests import factories
-from apps.influential_figure.tests.test_influential_figure_api import login_as_user
+from apps.influential_figures.tests import factories
+from apps.influential_figures.tests.test_influential_figure_api import login_as_user
 
 
 class InfluentialFigureValidationTest(APISimpleTestCase):
