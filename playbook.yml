@@ -4,20 +4,23 @@
     - name: Updates apt packages list from repositories 
       apt: update_cache=yes
 
-    - name: Install python2.7 
-      apt: name=python2.7 state=latest
+    - name: Install python3.4
+      apt: name=python3.4 state=latest
 
     - name: Install python-dev
       apt: name=python-dev state=latest
 
-    - name: Install pip
-      apt: name=python-pip state=latest
+    - name: Uninstall pip2
+      apt: name=python3-pip state=absent
+
+    - name: Install pip3
+      apt: name=python3-pip state=latest
 
     - name: Install virtualenv
       apt: name=python-virtualenv state=latest
 
     - name: Create a virtualenv
-      command: virtualenv /vagrant/.virtualenvs/nina-venv creates="/vagrant/.virtualenvs/nina-venv"
+      command: virtualenv /vagrant/.virtualenvs/nina-venv --distribute -p /usr/bin/python3.4 creates="/vagrant/.virtualenvs/nina-venv"
 
     - name: Install postgresql-devel
       apt: name=libpq-dev state=latest
@@ -49,7 +52,7 @@
         - restart postgresql
 
     - name: Chdir to project directory
-      lineinfile: dest=/home/vagrant/.bashrc line="cd /vagrant"
+      lineinfile: dest=/home/vagrant/.bashrc line="source /vagrant/.virtualenvs/nina-venv/bin/activate && cd /vagrant"
 
   handlers:
     - name: restart postgresql
