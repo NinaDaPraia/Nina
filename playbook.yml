@@ -37,6 +37,12 @@
     - name: Ensures postgresql is running
       service: name=postgresql state=started
 
+    - name: Enable postgresql external connections
+      lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf line="host all all 0.0.0.0/32 trust"
+      lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="^listen_addresses*" line="listen_addresses '*'"
+      notify:
+        - restart postgresql
+
     - name: Set up vagrant as PostgreSQL user
       postgresql_user: name=vagrant role_attr_flags=CREATEDB
       sudo_user: postgres
@@ -45,14 +51,21 @@
       postgresql_db: name=nina-dev owner=vagrant
       sudo_user: postgres
 
-    - name: Enable postgresql external connections
-      lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf line="host all all 0.0.0.0/32 trust"
-      lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="^listen_addresses*" line="listen_addresses '*'"
-      notify:
-        - restart postgresql
+    - name: Ensure user nina-dev has access to database nina-dev
+      postgresql_user: db=nina-dev name=nina-dev password=nina priv=ALL
+      sudo_user: postgres
+
+    - name: Create database for testings
+      postgresql_db: name=nina-test owner=vagrant
+      sudo_user: postgres
+
+    - name: Ensure user nina-dev has access to database nina-dev
+      postgresql_user: db=nina-test name=nina-test password=nina priv=ALL
+      sudo_user: postgres
 
     - name: Chdir to project directory
       lineinfile: dest=/home/vagrant/.bashrc line="source /vagrant/.virtualenvs/nina-venv/bin/activate && cd /vagrant"
+      sudo_user: postgres
 
   handlers:
     - name: restart postgresql
