@@ -1,6 +1,8 @@
 Nina [![Build Status](https://snap-ci.com/NinaDaPraia/Nina/branch/master/build_image)](https://snap-ci.com/NinaDaPraia/Nina/branch/master)
 ===
 
+[![Join the chat at https://gitter.im/NinaDaPraia/Nina](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NinaDaPraia/Nina?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Description
 
 A project to help you learn more about influential figures involved with social justice initiatives.
