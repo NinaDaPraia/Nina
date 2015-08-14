@@ -65,3 +65,4 @@ A project to help you learn more about influential figures involved with social 
 ##### How to contribute: 
 We are using Waffle to track the issues: 
 [![Stories in Ready](https://badge.waffle.io/NinaDaPraia/nina.svg?label=ready&title=Ready)](http://waffle.io/NinaDaPraia/nina)
+[![Throughput Graph](https://graphs.waffle.io/NinaDaPraia/nina/throughput.svg)](https://waffle.io/NinaDaPraia/nina/metrics)
