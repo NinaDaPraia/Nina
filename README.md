@@ -11,7 +11,7 @@ A project to help you learn more about influential figures involved with social 
 
 #### Python version
   
-  The project was tested using version 2.7.6
+  The project was tested using version 3.4
 
 #### System dependencies
   
@@ -49,6 +49,9 @@ A project to help you learn more about influential figures involved with social 
 #### How to run the test suite
   You can run the tests using the command:
   ```python manage.py test```
+  
+  or using paver to run the tasks:
+  ```paver test_all```
 
   To run the contract tests using a local server, you use the command:
   ```bundle exec rake spec```
@@ -59,3 +62,6 @@ A project to help you learn more about influential figures involved with social 
 ##### Deployment instructions
   Once you publish your commits, the deploy will be made by SnapCI once all the tests are green. You can interact with the API at http://nina.herokuapp.com
 
+##### How to contribute: 
+We are using Waffle to track the issues: 
+[![Stories in Ready](https://badge.waffle.io/NinaDaPraia/nina.svg?label=ready&title=Ready)](http://waffle.io/NinaDaPraia/nina)
