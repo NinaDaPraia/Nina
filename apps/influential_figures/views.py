@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from apps.influential_figures.serializers import InfluentialFigureSerializer
 from apps.influential_figures.models import InfluentialFigure
-from apps.influential_figures.app_permissions import UserPermission
 
 
 @api_view(('GET',))
@@ -15,7 +14,6 @@ class InfluentialListFigureView(ListCreateAPIView):
     serializer_class = InfluentialFigureSerializer
 
     queryset = InfluentialFigure.objects.all()
-    permission_classes = (UserPermission,)
 
 
 class InfluentialFigureView(RetrieveAPIView):

@@ -4,15 +4,6 @@ from apps.influential_figures.tests import factories
 from apps.influential_figures.tests.factories import InfluentialFigureFactory, InfluentialFigureResource
 
 
-def login_as_user(api_test_case):
-    new_user = factories.UserResource()
-    api_test_case.client.post("/rest-auth/registration/", new_user)
-    api_test_case.client.post("/rest-auth/login/", {
-        'username': new_user['username'],
-        'password': new_user['password1']
-    })
-
-
 class InfluentialFigureTest(APISimpleTestCase):
     def test_get_influential_figure_list(self):
         InfluentialFigureFactory()
@@ -34,7 +25,6 @@ class InfluentialFigureTest(APISimpleTestCase):
     def test_create_influential_figure(self):
         # TODO we should implement the social movements field and test it.
         influential_figure = InfluentialFigureResource()
-        login_as_user(self)
 
         response = self.client.post("/influential_figures", influential_figure)
         del response.data['id']

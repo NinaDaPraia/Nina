@@ -13,18 +13,12 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib import admin
+from django.conf.urls import url
 from apps.influential_figures.views import InfluentialFigureView, api_root, InfluentialListFigureView
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^$', api_root),
     url(r'^influential_figures/?$', InfluentialListFigureView.as_view()),
     url(r'^influential_figures/(?P<id>[\d]+)?$', InfluentialFigureView.as_view()),
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
 
-urlpatterns += staticfiles_urlpatterns()

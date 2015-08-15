@@ -32,10 +32,3 @@ class InfluentialFigureResource(factory.DictFactory):
     description = 'Zumbi dos Palmares'
     image = 'image'
     social_movements = []
-
-
-class UserResource(factory.DictFactory):
-    username = factory.Sequence(lambda n: 'person{0}'.format(n))
-    password1 = 'defaultpassword'
-    password2 = 'defaultpassword'
-    email = factory.Sequence(lambda n: 'person{0}@email.com'.format(n))
