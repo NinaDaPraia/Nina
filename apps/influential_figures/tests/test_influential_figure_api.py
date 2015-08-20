@@ -1,6 +1,5 @@
 from rest_framework.test import APISimpleTestCase
 from rest_framework import status
-from apps.influential_figures.tests import factories
 from apps.influential_figures.tests.factories import InfluentialFigureFactory, InfluentialFigureResource
 
 

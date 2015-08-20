@@ -21,4 +21,3 @@ urlpatterns = [
     url(r'^influential_figures/?$', InfluentialListFigureView.as_view()),
     url(r'^influential_figures/(?P<id>[\d]+)?$', InfluentialFigureView.as_view()),
 ]
-
