@@ -66,3 +66,7 @@ A project to help you learn more about influential figures involved with social 
 We are using Waffle to track the issues: 
 [![Stories in Ready](https://badge.waffle.io/NinaDaPraia/nina.svg?label=ready&title=Ready)](http://waffle.io/NinaDaPraia/nina)
 [![Throughput Graph](https://graphs.waffle.io/NinaDaPraia/nina/throughput.svg)](https://waffle.io/NinaDaPraia/nina/metrics)
+
+##### Contribute with us sending your contracts
+We have contract tests to make sure that when we change, we do not break anything for all the people that is using the API.
+Please share with us your json contracts so we make sure that we do not break the contract with you. You only have to do a pull request with your contract in the folder `contracts`.
